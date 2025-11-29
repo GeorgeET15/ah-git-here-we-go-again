@@ -1,0 +1,161 @@
+{
+  "actId": 3,
+  "title": "Merge Conflict Warzone",
+  "description": "Two branches collide violently. Conflict feels like an explosion.",
+  "steps": [
+    {
+      "id": "story-1",
+      "type": "dialog",
+      "speaker": "SYSTEM",
+      "text": "WARNING: Repository corruption detected. Branch collision imminent.",
+      "speakerType": "system"
+    },
+    {
+      "id": "story-2",
+      "type": "dialog",
+      "speaker": "BugLord",
+      "text": "Let's see how you survive WHEN WORLDS COLLIDE!",
+      "speakerType": "character"
+    },
+    {
+      "id": "story-3",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "Two futures are colliding. Parallel branches cannot coexist. Only you can merge them — or watch the system collapse.",
+      "speakerType": "character"
+    },
+    {
+      "id": "story-4",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "Stay calm. Conflicts happen when two branches change the same lines differently. You need to choose which version to keep.",
+      "speakerType": "character"
+    },
+    {
+      "id": "terminal-merge",
+      "type": "terminal",
+      "title": "Attempt Merge",
+      "initialOutput": [
+        { "type": "output", "text": "System has detected branch collision." },
+        { "type": "output", "text": "Two timelines are about to merge." },
+        { "type": "output", "text": "" }
+      ],
+      "expectedCommand": "git merge feature-ui",
+      "commandPattern": "^git merge feature-ui$",
+      "suggestions": [
+        { "command": "git merge feature-ui", "hint": "Attempt to merge (will conflict)" }
+      ],
+      "successOutput": [
+        { "type": "output", "text": "$ git merge feature-ui" },
+        { "type": "output", "text": "Auto-merging main.py" },
+        { "type": "error", "text": "CONFLICT (content): Merge conflict in main.py" },
+        { "type": "error", "text": "Automatic merge failed; fix conflicts and then commit the result." },
+        { "type": "output", "text": "" },
+        { "type": "error", "text": "⚠️ WARNING: Two branches changed the same lines." },
+        { "type": "error", "text": "⚠️ Git cannot decide automatically - you must resolve this manually." },
+        { "type": "output", "text": "" }
+      ],
+      "visualEvent": "timeline.conflict",
+      "soundEvent": "alarm",
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "error", "text": "⚠️ You must merge the feature branch first." },
+        { "type": "output", "text": "Hint: Type 'git merge feature-ui'" },
+        { "type": "output", "text": "" }
+      ],
+      "conceptId": "merge-conflict",
+      "nextStep": "boss-interrupt-1"
+    },
+    {
+      "id": "boss-interrupt-1",
+      "type": "dialog",
+      "speaker": "BugLord",
+      "text": "Let's see how you survive WHEN WORLDS COLLIDE!",
+      "speakerType": "character",
+      "nextStep": "concept-merge-conflict"
+    },
+    {
+      "id": "concept-merge-conflict",
+      "type": "concept",
+      "conceptId": "merge-conflict",
+      "autoShow": true,
+      "nextStep": "editor-resolve"
+    },
+    {
+      "id": "editor-resolve",
+      "type": "editor",
+      "title": "Resolve Conflict",
+      "file": "main.py",
+      "initialContent": "def greet():\n<<<<<<< HEAD\n    print(\"Hello from main branch\")\n=======\n    print(\"Hello from feature branch\")\n>>>>>>> feature-ui",
+      "expectedFix": "conflict-resolution",
+      "hint": "Remove the conflict markers (<<<<<<<, =======, >>>>>>>) and choose which version to keep, or merge both.",
+      "readonly": false,
+      "nextStep": "terminal-add-resolved"
+    },
+    {
+      "id": "terminal-add-resolved",
+      "type": "terminal",
+      "title": "Stage Resolved File",
+      "expectedCommand": "git add main.py",
+      "commandPattern": "^git add main\\.py$",
+      "suggestions": [
+        { "command": "git add main.py", "hint": "Stage the resolved file" }
+      ],
+      "successOutput": [
+        { "type": "success", "text": "$ git add main.py" },
+        { "type": "success", "text": "Conflict resolved, file staged" },
+        { "type": "output", "text": "Ready to complete merge" },
+        { "type": "output", "text": "" }
+      ],
+      "visualEvent": "timeline.stage",
+      "soundEvent": "stage",
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "nextStep": "terminal-commit-merge"
+    },
+    {
+      "id": "terminal-commit-merge",
+      "type": "terminal",
+      "title": "Complete Merge",
+      "expectedCommand": "git commit",
+      "commandPattern": "^git commit",
+      "suggestions": [
+        { "command": "git commit", "hint": "Complete the merge" }
+      ],
+      "successOutput": [
+        { "type": "output", "text": "$ git commit" },
+        { "type": "success", "text": "[main c4d5e6f] Merge branch 'feature-ui'" },
+        { "type": "success", "text": "Merge completed successfully" },
+        { "type": "output", "text": "" },
+        { "type": "success", "text": "🎉 Conflict resolved and merge completed!" },
+        { "type": "success", "text": "Stability restored — temporarily." },
+        { "type": "output", "text": "" }
+      ],
+      "visualEvent": "timeline.merge",
+      "soundEvent": "success",
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "nextStep": "complete"
+    },
+    {
+      "id": "story-end",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "Conflict resolved. Stability restored — temporarily.",
+      "speakerType": "character",
+      "nextStep": "complete"
+    },
+    {
+      "id": "complete",
+      "type": "complete",
+      "message": "Act 3 Complete! You've mastered conflict resolution.",
+      "nextAct": 4
+    }
+  ]
+}

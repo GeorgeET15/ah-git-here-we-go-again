@@ -1,0 +1,163 @@
+{
+  "actId": 5,
+  "title": "Cherry-Pick",
+  "description": "Locate the missing commit and restore it to save production",
+  "steps": [
+    {
+      "id": "story-1",
+      "type": "dialog",
+      "speaker": "SYSTEM",
+      "text": "**ALERT: Production failure detected. Crash reports rising.**",
+      "speakerType": "system"
+    },
+    {
+      "id": "story-2",
+      "type": "dialog",
+      "speaker": "BugLord",
+      "text": "Oops. Looks like somebody deleted a *very* important commit.",
+      "speakerType": "character"
+    },
+    {
+      "id": "story-3",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "This commit fixed a critical crash. Without it, the project is broken.",
+      "speakerType": "character"
+    },
+    {
+      "id": "story-4",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "But there's hope — Git never forgets. Even deleted commits still exist in history. We can rescue it using `git cherry-pick` — the power to extract single commits.",
+      "speakerType": "character"
+    },
+    {
+      "id": "terminal-log",
+      "type": "terminal",
+      "title": "Find Missing Commit",
+      "initialOutput": [
+        { "type": "output", "text": "Production is down! A critical commit was deleted." },
+        { "type": "output", "text": "Use git log to find the missing commit ID." },
+        { "type": "output", "text": "" }
+      ],
+      "expectedCommand": "git log --oneline",
+      "commandPattern": "^git log --oneline$",
+      "suggestions": [
+        { "command": "git log --oneline", "hint": "View commit history to find the missing commit" }
+      ],
+      "successOutput": [
+        { "type": "output", "text": "$ git log --oneline" },
+        { "type": "output", "text": "" },
+        { "type": "output", "text": "a1b2c3f Add login feature" },
+        { "type": "error", "text": "f91d022 Fix startup crash <--- THIS is the missing commit" },
+        { "type": "output", "text": "c31ac44 Initial commit" },
+        { "type": "output", "text": "" },
+        { "type": "success", "text": "💡 Concept: git log shows project history" },
+        { "type": "output", "text": "   Definition: browse commit history" },
+        { "type": "output", "text": "   Real world: diagnose changes, locate bugs, track work" },
+        { "type": "output", "text": "   Metaphor: CCTV footage of your time machine" },
+        { "type": "output", "text": "" }
+      ],
+      "visualEvent": "timeline.highlight",
+      "soundEvent": "discover",
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "conceptId": "git log",
+      "nextStep": "boss-interrupt-1"
+    },
+    {
+      "id": "boss-interrupt-1",
+      "type": "dialog",
+      "speaker": "BugLord",
+      "text": "That commit belongs to ME. You think you can just take it?",
+      "speakerType": "character",
+      "nextStep": "concept-git-log"
+    },
+    {
+      "id": "concept-git-log",
+      "type": "concept",
+      "conceptId": "git log",
+      "autoShow": true,
+      "nextStep": "terminal-cherry-pick"
+    },
+    {
+      "id": "terminal-cherry-pick",
+      "type": "terminal",
+      "title": "Restore Missing Commit",
+      "expectedCommand": "git cherry-pick f91d022",
+      "commandPattern": "^git cherry-pick f91d022$",
+      "suggestions": [
+        { "command": "git cherry-pick f91d022", "hint": "Restore the missing commit using its SHA" }
+      ],
+      "successOutput": [
+        { "type": "output", "text": "$ git cherry-pick f91d022" },
+        { "type": "output", "text": "Applying f91d022..." },
+        { "type": "output", "text": "Restoring fix from deleted branch" },
+        { "type": "success", "text": "Cherry-pick successful — commit replayed onto main" },
+        { "type": "output", "text": "" },
+        { "type": "success", "text": "💡 Concept: Cherry-pick = Extract a single commit and apply it elsewhere" },
+        { "type": "output", "text": "   Used to rescue important changes without merging full branches" },
+        { "type": "output", "text": "   Great for bug fixes and hotfixes" },
+        { "type": "output", "text": "   Be careful with conflicts" },
+        { "type": "output", "text": "" },
+        { "type": "success", "text": "🎉 Production restored! Critical commit rescued." },
+        { "type": "output", "text": "" }
+      ],
+      "visualEvent": "timeline.cherrypick",
+      "soundEvent": "extraction",
+      "errorOutput": [
+        { "type": "error", "text": "fatal: bad object 'f91d22'" },
+        { "type": "error", "text": "⚠️ Invalid commit ID. Check the commit SHA carefully." },
+        { "type": "output", "text": "Hint: Use 'git log --oneline' to find the correct commit ID." },
+        { "type": "output", "text": "The commit ID is 'f91d022' (7 characters)" },
+        { "type": "output", "text": "" }
+      ],
+      "conceptId": "git cherry-pick",
+      "nextStep": "boss-final"
+    },
+    {
+      "id": "boss-final",
+      "type": "dialog",
+      "speaker": "BugLord",
+      "text": "NO! This timeline was mine... you stole fate from me!",
+      "speakerType": "character",
+      "nextStep": "concept-git-cherry-pick"
+    },
+    {
+      "id": "concept-git-cherry-pick",
+      "type": "concept",
+      "conceptId": "git cherry-pick",
+      "autoShow": true,
+      "nextStep": "story-end"
+    },
+    {
+      "id": "story-end",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "You restored the timeline. The world is safe — for now.",
+      "speakerType": "character",
+      "nextStep": "complete"
+    },
+    {
+      "id": "complete",
+      "type": "complete",
+      "message": "Act 5 Complete! You've mastered cherry-pick extraction. Production restored.",
+      "nextAct": null
+    }
+  ],
+  "visualizations": {
+    "commits": [
+      { "sha": "a1b2c3f", "message": "Add login feature" },
+      { "sha": "f91d022", "message": "Fix startup crash", "isMissing": true },
+      { "sha": "c31ac44", "message": "Initial commit" }
+    ],
+    "editor": {
+      "file": "app.py",
+      "brokenContent": "def startup():\n    # CRITICAL BUG: Missing null check\n    user = get_user()  # <-- This crashes if user is None\n    print(f\"Welcome {user.name}\")  # <-- Error here!\n\nstartup()",
+      "fixedContent": "def startup():\n    user = get_user()\n    if user is None:  # <-- FIX: Added null check\n        print(\"Welcome Guest\")\n        return\n    print(f\"Welcome {user.name}\")\n\nstartup()"
+    }
+  }
+}

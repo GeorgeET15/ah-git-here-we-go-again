@@ -1,0 +1,51 @@
+{
+  "id": "todo-app",
+  "name": "Todo App",
+  "description": "A todo application with multiple feature branches",
+  "initialState": {
+    "currentBranch": "main",
+    "branches": [
+      {
+        "name": "main",
+        "head": "init123"
+      },
+      {
+        "name": "feature-auth",
+        "head": "init123"
+      }
+    ],
+    "files": {
+      "src/app.js": {
+        "path": "src/app.js",
+        "content": "class TodoApp {\n  constructor() {\n    this.todos = [];\n  }\n\n  addTodo(text) {\n    this.todos.push({ text, done: false });\n  }\n}\n\nconst app = new TodoApp();",
+        "status": "tracked"
+      },
+      "src/index.html": {
+        "path": "src/index.html",
+        "content": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Todo App</title>\n</head>\n<body>\n  <h1>My Todos</h1>\n  <div id=\"todos\"></div>\n</body>\n</html>",
+        "status": "tracked"
+      }
+    },
+    "commits": [
+      {
+        "sha": "init123",
+        "message": "Initial commit",
+        "author": "Developer",
+        "date": "2024-01-01T00:00:00Z",
+        "branch": "main",
+        "parent": null,
+        "files": ["src/app.js", "src/index.html"],
+        "tree": {
+          "src/app.js": "class TodoApp {\n  constructor() {\n    this.todos = [];\n  }\n\n  addTodo(text) {\n    this.todos.push({ text, done: false });\n  }\n}\n\nconst app = new TodoApp();",
+          "src/index.html": "<!DOCTYPE html>\n<html>\n<head>\n  <title>Todo App</title>\n</head>\n<body>\n  <h1>My Todos</h1>\n  <div id=\"todos\"></div>\n</body>\n</html>"
+        }
+      }
+    ],
+    "staged": [],
+    "modified": [],
+    "untracked": [],
+    "isInitialized": true,
+    "HEAD": "init123"
+  }
+}
+

@@ -1,0 +1,225 @@
+{
+  "actId": 2,
+  "title": "Branching & Merging",
+  "description": "Create a feature branch, make changes, and merge back to main",
+  "steps": [
+    {
+      "id": "story-1",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "Great work creating your first commit. Now your project has a history.",
+      "speakerType": "character"
+    },
+    {
+      "id": "story-2",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "But what happens when developers need to work on different things at the same time?",
+      "speakerType": "character"
+    },
+    {
+      "id": "story-3",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "That's where branches come in. A branch is a parallel line of development.",
+      "speakerType": "character"
+    },
+    {
+      "id": "story-4",
+      "type": "dialog",
+      "speaker": "Keif-X",
+      "text": "Let me show you. We'll create a new branch called 'feature-login'.",
+      "speakerType": "character"
+    },
+    {
+      "id": "terminal-create-branch",
+      "type": "terminal",
+      "title": "Create Branch",
+      "initialOutput": [
+        { "type": "output", "text": "You're on the main branch. Let's create a feature branch." },
+        { "type": "output", "text": "" }
+      ],
+      "expectedCommand": "git branch feature-login",
+      "commandPattern": "^git branch feature-login$",
+      "suggestions": [
+        { "command": "git branch feature-login", "hint": "Create a new branch" }
+      ],
+      "successOutput": [
+        { "type": "success", "text": "Created branch 'feature-login'" },
+        { "type": "output", "text": "" },
+        { "type": "success", "text": "💡 Concept: A branch creates a parallel line of development." },
+        { "type": "output", "text": "   Like duplicating a save file before trying something risky." },
+        { "type": "output", "text": "   The main branch stays stable while you experiment." },
+        { "type": "output", "text": "" }
+      ],
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "conceptId": "git branch",
+      "nextStep": "concept-git-branch"
+    },
+    {
+      "id": "concept-git-branch",
+      "type": "concept",
+      "conceptId": "git branch",
+      "autoShow": true,
+      "nextStep": "terminal-checkout"
+    },
+    {
+      "id": "terminal-checkout",
+      "type": "terminal",
+      "title": "Switch to Branch",
+      "expectedCommand": "git checkout feature-login",
+      "commandPattern": "^git checkout feature-login$",
+      "suggestions": [
+        { "command": "git checkout feature-login", "hint": "Switch to the branch" }
+      ],
+      "successOutput": [
+        { "type": "success", "text": "Switched to branch 'feature-login'" },
+        { "type": "output", "text": "" },
+        { "type": "success", "text": "💡 Concept: Checkout switches your working directory to a different branch." },
+        { "type": "output", "text": "   Like switching between different save files." },
+        { "type": "output", "text": "   Your files update to match that branch's state." },
+        { "type": "output", "text": "" }
+      ],
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "conceptId": "git checkout",
+      "nextStep": "concept-git-checkout"
+    },
+    {
+      "id": "concept-git-checkout",
+      "type": "concept",
+      "conceptId": "git checkout",
+      "autoShow": true,
+      "nextStep": "terminal-add-feature"
+    },
+    {
+      "id": "terminal-add-feature",
+      "type": "terminal",
+      "title": "Stage Changes",
+      "expectedCommand": "git add main.py",
+      "commandPattern": "^git add main\\.py$",
+      "suggestions": [
+        { "command": "git add main.py", "hint": "Stage changes" }
+      ],
+      "successOutput": [
+        { "type": "success", "text": "Changes staged" },
+        { "type": "output", "text": "" }
+      ],
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "nextStep": "terminal-commit-feature"
+    },
+    {
+      "id": "terminal-commit-feature",
+      "type": "terminal",
+      "title": "Commit on Feature Branch",
+      "expectedCommand": "git commit",
+      "commandPattern": "^git commit",
+      "suggestions": [
+        { "command": "git commit -m \"Add login feature\"", "hint": "Commit on feature branch" }
+      ],
+      "successOutput": [
+        { "type": "success", "text": "[feature-login b2c3d4e] Add login feature" },
+        { "type": "output", "text": " 1 file changed, 5 insertions(+)" },
+        { "type": "output", "text": "" }
+      ],
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "nextStep": "terminal-checkout-main"
+    },
+    {
+      "id": "terminal-checkout-main",
+      "type": "terminal",
+      "title": "Switch Back to Main",
+      "expectedCommand": "git checkout main",
+      "commandPattern": "^git checkout main$",
+      "suggestions": [
+        { "command": "git checkout main", "hint": "Switch back to main" }
+      ],
+      "successOutput": [
+        { "type": "success", "text": "Switched to branch 'main'" },
+        { "type": "output", "text": "" }
+      ],
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "nextStep": "terminal-merge"
+    },
+    {
+      "id": "terminal-merge",
+      "type": "terminal",
+      "title": "Merge Feature Branch",
+      "expectedCommand": "git merge feature-login",
+      "commandPattern": "^git merge feature-login$",
+      "suggestions": [
+        { "command": "git merge feature-login", "hint": "Merge the feature branch" }
+      ],
+      "successOutput": [
+        { "type": "output", "text": "Updating a1b2c3d..b2c3d4e" },
+        { "type": "success", "text": "Fast-forward" },
+        { "type": "output", "text": " main.py | 5 +++++" },
+        { "type": "output", "text": " 1 file changed, 5 insertions(+)" },
+        { "type": "success", "text": "" },
+        { "type": "success", "text": "💡 Concept: Merge combines changes from one branch into another." },
+        { "type": "output", "text": "   Like merging two rivers - the waters combine into one." },
+        { "type": "output", "text": "   This is how team work comes together." },
+        { "type": "output", "text": "" },
+        { "type": "success", "text": "🎉 Branch merged successfully!" },
+        { "type": "output", "text": "" }
+      ],
+      "errorOutput": [
+        { "type": "error", "text": "Command not recognized or not expected at this step." },
+        { "type": "output", "text": "Check the suggestions above for guidance." },
+        { "type": "output", "text": "" }
+      ],
+      "conceptId": "git merge",
+      "nextStep": "concept-git-merge"
+    },
+    {
+      "id": "concept-git-merge",
+      "type": "concept",
+      "conceptId": "git merge",
+      "autoShow": true,
+      "nextStep": "complete"
+    },
+    {
+      "id": "complete",
+      "type": "complete",
+      "message": "Act 2 Complete! You've mastered branching and merging.",
+      "nextAct": 3
+    }
+  ],
+  "visualizations": {
+    "timeline": {
+      "initialState": "main-only",
+      "states": {
+        "main-only": {
+          "message": "Only main branch exists",
+          "hint": "Create a feature branch"
+        },
+        "branch-created": {
+          "message": "Feature branch created",
+          "hint": "Switch to the branch"
+        },
+        "merged": {
+          "message": "Branches merged successfully"
+        }
+      }
+    }
+  }
+}

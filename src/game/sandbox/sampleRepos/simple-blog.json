@@ -1,0 +1,53 @@
+{
+  "id": "simple-blog",
+  "name": "Simple Blog",
+  "description": "A basic blog application with posts and comments",
+  "initialState": {
+    "currentBranch": "main",
+    "branches": [
+      {
+        "name": "main",
+        "head": "a1b2c3d"
+      }
+    ],
+    "files": {
+      "index.html": {
+        "path": "index.html",
+        "content": "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Blog</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Welcome to My Blog</h1>\n  <div id=\"posts\"></div>\n  <script src=\"app.js\"></script>\n</body>\n</html>",
+        "status": "tracked"
+      },
+      "style.css": {
+        "path": "style.css",
+        "content": "body {\n  font-family: Arial, sans-serif;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 20px;\n}\n\nh1 {\n  color: #333;\n}",
+        "status": "tracked"
+      },
+      "app.js": {
+        "path": "app.js",
+        "content": "console.log('Blog app loaded');\n\nfunction loadPosts() {\n  // TODO: Load posts from API\n  console.log('Loading posts...');\n}",
+        "status": "tracked"
+      }
+    },
+    "commits": [
+      {
+        "sha": "a1b2c3d",
+        "message": "Initial commit",
+        "author": "Developer",
+        "date": "2024-01-01T00:00:00Z",
+        "branch": "main",
+        "parent": null,
+        "files": ["index.html", "style.css", "app.js"],
+        "tree": {
+          "index.html": "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Blog</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Welcome to My Blog</h1>\n  <div id=\"posts\"></div>\n  <script src=\"app.js\"></script>\n</body>\n</html>",
+          "style.css": "body {\n  font-family: Arial, sans-serif;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 20px;\n}\n\nh1 {\n  color: #333;\n}",
+          "app.js": "console.log('Blog app loaded');\n\nfunction loadPosts() {\n  // TODO: Load posts from API\n  console.log('Loading posts...');\n}"
+        }
+      }
+    ],
+    "staged": [],
+    "modified": [],
+    "untracked": [],
+    "isInitialized": true,
+    "HEAD": "a1b2c3d"
+  }
+}
+

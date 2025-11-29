@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* GitHub Dark Theme Colors */
+    --background: 210 29% 7%;
+    --foreground: 213 27% 92%;
+
+    --card: 215 28% 11%;
+    --card-foreground: 213 27% 92%;
+
+    --popover: 215 28% 11%;
+    --popover-foreground: 213 27% 92%;
+
+    --primary: 137 55% 41%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 213 27% 92%;
+
+    --muted: 220 13% 18%;
+    --muted-foreground: 218 14% 56%;
+
+    --accent: 220 13% 18%;
+    --accent-foreground: 213 27% 92%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
+    --ring: 137 55% 41%;
+
+    --radius: 0.375rem;
+
+    /* Custom developer theme tokens */
+    --terminal-bg: 215 28% 8%;
+    --terminal-text: 142 71% 61%;
+    --editor-bg: 215 28% 11%;
+    --panel-border: 0 0% 100% / 0.08;
+    --success: 137 55% 41%;
+    --error: 0 84% 60%;
+    --warning: 45 93% 58%;
+    --commit-unlocked: 137 55% 41%;
+    --commit-locked: 220 9% 46%;
+    
+    /* Accent colors for cinematic UI */
+    --accent-cyan: 187 85% 53%;
+    --accent-purple: 270 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  code, pre, .code-font {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', monospace;
+  }
+}
+
+@layer utilities {
+  .panel {
+    @apply bg-card border border-border rounded-md shadow-lg;
+  }
+
+  .terminal-panel {
+    @apply bg-[hsl(var(--terminal-bg))] border border-border rounded-md;
+  }
+
+  .editor-line {
+    @apply border border-dashed border-muted-foreground/20 rounded bg-muted/10;
+  }
+
+  .github-btn {
+    @apply bg-secondary hover:bg-secondary/80 text-secondary-foreground border border-border transition-all;
+  }
+
+  .commit-node {
+    @apply rounded-full border-2 transition-all cursor-pointer;
+  }
+
+  .commit-unlocked {
+    @apply bg-[hsl(var(--commit-unlocked))] border-[hsl(var(--commit-unlocked))] hover:shadow-[0_0_20px_hsl(var(--commit-unlocked)/0.5)];
+  }
+
+  .commit-locked {
+    @apply bg-[hsl(var(--commit-locked))] border-[hsl(var(--commit-locked))] opacity-50 cursor-not-allowed;
+  }
+}

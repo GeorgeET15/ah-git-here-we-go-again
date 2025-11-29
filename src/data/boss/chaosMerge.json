@@ -1,0 +1,99 @@
+{
+  "bossId": "chaos-merge",
+  "title": "Chaos Merge Conflict",
+  "description": "Multiple branches collide! Resolve all conflicts before time runs out.",
+  "timeLimit": 300,
+  "branches": [
+    "feature/ui",
+    "feature/api",
+    "hotfix/crash"
+  ],
+  "conflictedFiles": [
+    {
+      "filename": "auth.js",
+      "path": "src/auth.js",
+      "conflicts": [
+        {
+          "id": "conflict-1",
+          "startLine": 15,
+          "endLine": 25,
+          "currentContent": "function authenticate(user) {\n  return user.valid;\n}",
+          "incomingContent": "function authenticate(user) {\n  if (!user) return false;\n  return user.valid && user.active;\n}",
+          "solution": "incoming",
+          "hint": "The incoming version adds null check and active status validation."
+        }
+      ],
+      "fullContent": "<<<<<<< HEAD\nfunction authenticate(user) {\n  return user.valid;\n}\n=======\nfunction authenticate(user) {\n  if (!user) return false;\n  return user.valid && user.active;\n}\n>>>>>>> feature/api"
+    },
+    {
+      "filename": "ui.tsx",
+      "path": "src/components/ui.tsx",
+      "conflicts": [
+        {
+          "id": "conflict-2",
+          "startLine": 42,
+          "endLine": 50,
+          "currentContent": "const Button = ({ children }) => <button>{children}</button>;",
+          "incomingContent": "const Button = ({ children, variant }) => <button className={variant}>{children}</button>;",
+          "solution": "both",
+          "hint": "Combine both: keep the variant prop and the children."
+        }
+      ],
+      "fullContent": "<<<<<<< HEAD\nconst Button = ({ children }) => <button>{children}</button>;\n=======\nconst Button = ({ children, variant }) => <button className={variant}>{children}</button>;\n>>>>>>> feature/ui"
+    },
+    {
+      "filename": "kernel.cpp",
+      "path": "src/kernel.cpp",
+      "conflicts": [
+        {
+          "id": "conflict-3",
+          "startLine": 88,
+          "endLine": 95,
+          "currentContent": "void process() {\n  // Critical fix\n  handle();\n}",
+          "incomingContent": "void process() {\n  // Old implementation\n  legacy_handle();\n}",
+          "solution": "current",
+          "hint": "Keep the current version - it has the critical fix."
+        }
+      ],
+      "fullContent": "<<<<<<< HEAD\nvoid process() {\n  // Critical fix\n  handle();\n}\n=======\nvoid process() {\n  // Old implementation\n  legacy_handle();\n}\n>>>>>>> hotfix/crash"
+    }
+  ],
+  "terminalCommands": {
+    "trigger": "git merge feature/ui feature/api hotfix/crash",
+    "expectedSequence": [
+      "git checkout main",
+      "git merge feature/ui feature/api hotfix/crash",
+      "git add auth.js",
+      "git add ui.tsx",
+      "git add kernel.cpp",
+      "git commit"
+    ]
+  },
+  "bugLordInterrupts": [
+    {
+      "trigger": "timeRemaining",
+      "threshold": 120,
+      "message": "Tick tock! Your timeline is fracturing!"
+    },
+    {
+      "trigger": "timeRemaining",
+      "threshold": 60,
+      "message": "Time is running out! The chaos grows!"
+    },
+    {
+      "trigger": "timeRemaining",
+      "threshold": 30,
+      "message": "MUAHAHAHA! Your precious timeline collapses!"
+    },
+    {
+      "trigger": "conflictResolved",
+      "threshold": 1,
+      "message": "One down, but chaos remains!"
+    },
+    {
+      "trigger": "mistake",
+      "message": "Wrong choice! Try again, engineer."
+    }
+  ]
+}
+
