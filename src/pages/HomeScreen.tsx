@@ -150,12 +150,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   const completedActs = completedActsArray.length;
 
   const handleActClick = (actNumber: number) => {
-    console.log("🟡 [HomeScreen] handleActClick called with actNumber:", actNumber);
+    console.log(
+      "🟡 [HomeScreen] handleActClick called with actNumber:",
+      actNumber
+    );
     console.log("🟡 [HomeScreen] act1Complete:", act1Complete);
     console.log("🟡 [HomeScreen] act2Complete:", act2Complete);
     console.log("🟡 [HomeScreen] act3Unlocked:", act3Unlocked);
     console.log("🟡 [HomeScreen] completedActsArray:", completedActsArray);
-    
+
     // Map act number to screen
     const screenMap: Record<number, string> = {
       1: "lesson",
@@ -164,14 +167,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       4: "act4",
       5: "act5",
     };
-    
+
     const screen = screenMap[actNumber] as any;
     console.log("🟡 [HomeScreen] Mapped screen:", screen);
     if (screen) {
       console.log("🟡 [HomeScreen] Calling navigateToScreen(", screen, ")");
       navigateToScreen(screen);
     } else {
-      console.warn("🟡 [HomeScreen] No screen mapped for actNumber:", actNumber);
+      console.warn(
+        "🟡 [HomeScreen] No screen mapped for actNumber:",
+        actNumber
+      );
     }
   };
 
@@ -200,7 +206,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
           <div className="flex items-center gap-4 font-mono text-sm text-muted-foreground">
             <span>Progress: {completedActs}/5 Acts</span>
-            <span className="text-success">{completedActs === 5 ? "COMPLETE" : "IN PROGRESS"}</span>
+            <span className="text-success">
+              {completedActs === 5 ? "COMPLETE" : "IN PROGRESS"}
+            </span>
           </div>
         </div>
       </div>
@@ -247,15 +255,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-            >
-              <Button
-                onClick={handleStartTutorialClick}
-                size="lg"
-                className="px-10 py-6 text-lg font-semibold bg-success hover:bg-success/90 text-success-foreground shadow-lg shadow-success/30 hover:shadow-xl hover:shadow-success/40 transition-all duration-300 font-mono"
-              >
-                START STORY MODE
-              </Button>
-            </motion.div>
+            ></motion.div>
           </motion.div>
         </div>
       </div>
@@ -323,7 +323,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <Dialog open={showNameDialog} onOpenChange={setShowNameDialog}>
         <DialogContent className="sm:max-w-[425px] bg-card border-border">
           <DialogHeader>
-            <DialogTitle className="text-foreground">Welcome, Engineer!</DialogTitle>
+            <DialogTitle className="text-foreground">
+              Welcome, Engineer!
+            </DialogTitle>
             <DialogDescription className="text-muted-foreground">
               Enter your name to personalize your Git learning experience.
             </DialogDescription>
@@ -382,7 +384,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            <span className="ml-2 text-xs text-muted-foreground">SYSTEM CONSOLE</span>
+            <span className="ml-2 text-xs text-muted-foreground">
+              SYSTEM CONSOLE
+            </span>
           </div>
           <div className="h-20 overflow-hidden bg-black/50 rounded p-3 text-green-400 text-sm">
             <motion.div
